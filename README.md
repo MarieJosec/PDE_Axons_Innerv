@@ -31,6 +31,13 @@ Library of functions in order to compute the examples. The functions are organiz
 * the in silico denervation,
 * the visualization of the results.
 
+### File example_pde_axons.py
+
+The file "example_pde_axons.py" is a python program which computes the dynamical system and re
+
+
+
+
 ## Run on local machine 
 ```sh
 $ python Example_HFF.py
