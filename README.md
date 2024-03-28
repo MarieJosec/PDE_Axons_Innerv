@@ -33,7 +33,7 @@ Library of functions in order to compute the examples. The functions are organiz
 
 ### File example_pde_axons.py
 
-The file "example_pde_axons.py" is a python program which computes the dynamical system, compute the in silico denervated system at different defined time and plot the results: control solution and denervated solution (see [preprint](https:\\google.com) for more details).
+The file "example_pde_axons.py" is a python program which computes the dynamical system, compute the in silico denervated system at different defined time and plot the results: control solution and denervated solution (see [CCHMMP](https://hal.archives-ouvertes.fr/hal-02263522) for more details).
 
 
 
