@@ -7,7 +7,7 @@ Numpy (probably already installed):
 $ pip install --user numpy
 ```
 ---
-numba:
+Numba:
 ```sh
 $ pip install --user numba
 ```
