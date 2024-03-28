@@ -19,7 +19,9 @@ $ pip install --user matplotlib
 ## Main features
 
 The main features of the library are:
-- 
+- the numerical computation of the coupled dynamical system modeling the evolution of the pancreatic cancer and axons' remodeling,
+- the numerical computation of in silico denervation on the system,
+- the visualization of the evolution of the solution.
 
 
 
