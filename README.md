@@ -23,7 +23,13 @@ The main features of the library are:
 - the numerical computation of in silico denervation on the system,
 - the visualization of the evolution of the solution.
 
+### File functions_pde_axons.py
 
+Library of functions in order to compute the examples. The functions are organized in the following categories:
+* the setting of the parameters,
+* the discritization and computation of the coupled PDE and ODE equations,
+* the in silico denervation,
+* the visualization of the results.
 
 ## Run on local machine 
 ```sh
