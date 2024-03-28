@@ -29,7 +29,7 @@ More details about the dynamical system can be found in [CCHMMP](https://hal.arc
 
 Library of functions in order to compute the examples. The functions are organized in the following categories:
 * the setting of the parameters,
-* the discritization and computation of the coupled PDE and ODE equations,
+* the discretization and computation of the coupled PDE and ODE equations,
 * the in silico denervation,
 * the visualization of the results.
 
@@ -40,8 +40,6 @@ Three sets of parameters are given, one can choose between these sets and modify
 * the evolution of the axons,
 * the evolution of the total density of cancer cells,
 * the evolution of the distribution of the cells over the phenotype axis.
-
-
 
 
 ## Run on local machine 
