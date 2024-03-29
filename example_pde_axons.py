@@ -10,7 +10,7 @@ def parameters_used():
     Sets of parameters used to compute the coupled model
 
     Returns:
-        list of lists consisting of values of the parameters
+        list
     """
     all_par = [
         [
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     plt.close("all")
     A1_0 = 0.15445
     A2_0 = 0.004
-    init_data = [A1_0, A2_0]  # list of initial consitions for A1 and A2
+    init_data = [A1_0, A2_0]  # list of initial conditions for A1 and A2
 
     temp = parameters_used()  # we define the sets of parameters that we wish to test
     index_set_parameters = 0
@@ -78,10 +78,10 @@ if __name__ == "__main__":
     )  # we choose a set of parameters from all sets of parameters provided
 
     # Dynamical system
-    fct.axon_plot(init_data, par)  # we plot the axons remodelling over time
+    fct.axon_plot(init_data, par)  # we plot the axons evolution over time
     fct.plot_pdes(
         init_data, par
-    )  # we plot the dynamics of the evolution of Q with respect to time
+    )  # we plot the distribution of Q with respect to time over the phenotypes axis
 
     # Denervated system
     # The following in silico denervation times should be between 0 and 70 as the final time is 70.
