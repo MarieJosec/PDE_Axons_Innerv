@@ -22,24 +22,28 @@ def parameters_used():
 
 
 if __name__ == "__main__":
+    plt.close('all')
     A1_0 = 0.15445 
     A2_0 = 0.004
     init_data = [A1_0, A2_0] # list of initial consitions for A1 and A2
-
+    
     temp = parameters_used()  # we define the sets of parameters that we wish to test
-    par = fct.set_parameters(temp[2]) # we choose a set of parameters from all sets of parameters provided
+    index_set_parameters = 0
+    par = fct.set_parameters(temp[index_set_parameters]) # we choose a set of parameters from all sets of parameters provided
 
+    # Dynamical system 
     fct.axon_plot(init_data, par) # we plot the axons remodelling over time
+    fct.plot_pdes(init_data, par)   # we plot the dynamics of the evolution of Q with respect to time 
 
-
+    # Denervated system
+    # The following in silico denervation times should be between 0 and 70 as the final time is 70.
+    time_denerv1 = 40 # time chosen for the denervation of sympathetic axons
+    time_denerv2 = 60 # time chosen for the denervation of sensory axons
     par_1 = fct.denerv_param(par,'A1') # we choose to denervate A1 and can be chosen by the user
     # If one wants to denervate the sensory axons first, the user can replace 'A1' by 'A2' in the previous line.
     par_2 = fct.denerv_param(par,'A1A2') # we choose to then denervate A1 and A2
 
-    # The following in silico denervation times should be between 0 and 70 as the final time is 70.
-    time_denerv1 = 40 # time chosen for first denervation
-    time_denerv2 = 60 # time chosen for second denervation
 
     fct.plot_cancercells_den(init_data, par, time_denerv1 , time_denerv2 , par_1,par_2) # we plot the evolution of cancer cells in time after
                                                                     #denervating first A1 at time 40 and then A2 at time 60
-    fct.plot_pdes(init_data, par)   # we plot the dynamics of the evolution of Q with respect to time 
+    
