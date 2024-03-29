@@ -39,11 +39,7 @@ if __name__ == "__main__":
     # The following in silico denervation times should be between 0 and 70 as the final time is 70.
     time_denerv1 = 40 # time chosen for the denervation of sympathetic axons
     time_denerv2 = 60 # time chosen for the denervation of sensory axons
-    par_1 = fct.denerv_param(par,'A1') # we choose to denervate A1 and can be chosen by the user
-    # If one wants to denervate the sensory axons first, the user can replace 'A1' by 'A2' in the previous line.
-    par_2 = fct.denerv_param(par,'A1A2') # we choose to then denervate A1 and A2
-
-
-    fct.plot_cancercells_den(init_data, par, time_denerv1 , time_denerv2 , par_1,par_2) # we plot the evolution of cancer cells in time after
-                                                                    #denervating first A1 at time 40 and then A2 at time 60
+    # we plot the evolution of cancer cells subject to the in silico denervation
+    denerv_dyn_system(time_denerv1,time_denerv2,init_data,par) 
+   
     
