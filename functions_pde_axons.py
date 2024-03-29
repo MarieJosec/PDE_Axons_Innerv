@@ -9,12 +9,12 @@ import matplotlib.pyplot as plt
 # Parameters setting
 def set_parameters(par):
     """
-    sets the parameters
+    Formatting the parameters
 
     Args:
-        par (list): sets of parameters not set
+        par (list): set of parameters
     Returns:
-        out (array float): sets of parameters set to be used for computing the model
+        out (array float): correct format of the set of parameters 
     """
     out = np.zeros((18,))
     # Transport
@@ -46,11 +46,12 @@ def set_parameters(par):
 
 
 def denerv_param(par, axondenerv):
-    """modifying the parameters to apply in silico denervation based on the type of axon denervated
+    """
+    Modifying the parameters to apply in silico denervation based on the type of axon denervated
 
     Args:
         par (array float): sets of parameters that needs to be modified based on the denervation type
-        axondenerv (string): the type of axon to be denervated, only sympathetic, only sensory, or both axons
+        axondenerv (string): the type of axon to be denervated: "A1" (sympathetic), "A2" (sensory), "A1A2" (both axons)
     """
 
     out = np.copy(par)
@@ -98,7 +99,7 @@ def pi_transport(x, par):
     A function that corresponds to pi(x) in the model
 
     Args:
-        x (1-D vector): a vector of points that discritize the space
+        x (1-D vector): discretized space
         par (array float): set of parameters used
 
     Returns:
@@ -110,12 +111,13 @@ def pi_transport(x, par):
 
 
 def compute_pde(tf1, par, init_data):
-    """Numerical computation of the dynamical system
+    """
+    Numerical computation of the dynamical system
 
     Args:
-        tf1 (integer): Final time of computation
+        tf1 (integer): final time of computation
         par (array float): tuple of parameters of the dynamical system
-        init_data (list): Initial data for the dynamical system
+        init_data (list): initial data for the dynamical system
     """
     # Discretization inputs
     dx = 0.05  # space step
@@ -252,7 +254,7 @@ def compute_pde_both_den(tf1, dt, tf2, tf3, par_old, par, par2, init_data):
         init_data (list): initial data for A1 and A2
 
     Returns:
-        td : a 1-D vector of time discritized
+        td : time discretization
         NT0d : 1-D time vector for NT0d total concentration of cells
         NTcd : 1-D time vector for the total concentration of cancer cells
         all_Q : a list of arrays that saves the cell distribution at each time step
@@ -340,12 +342,12 @@ def compute_pde_both_den(tf1, dt, tf2, tf3, par_old, par, par2, init_data):
 @numba.jit(nopython=True)
 def loop_pde(dt, cfl, NT, transfer, prol, epsilon, par, A1, A2, Q, mom, dx, N, xcind):
     """
-    Loop over the discritized time for the descritized model that solves the coupled system
+    Loop solving the coupled system
 
     Args:
         dt (float): time step
         cfl (float): multiplicative coefficient
-        NT (int):  length of the time vector
+        NT (integer):  length of the time vector
         transfer (float): return of pi_transport function multiplied by parameter \pi_0
         prol (float): return of  function multiplies by parameter \pi_0
         epsilon (float): term found in the speed term of the model
@@ -355,9 +357,9 @@ def loop_pde(dt, cfl, NT, transfer, prol, epsilon, par, A1, A2, Q, mom, dx, N, x
         Q (1-D time vector): concentration of cells at time t with phenotype x
         mom (float): saves the initial value of NT0 the total concentration of cells present
         dx (float): space step
-        N (int): length of the space vector
-        xcind (float): taken to be the closest to 0
-
+        N (integer): length of the space vector
+        xcind (float): middle of the phenotype axis
+        
     Returns:
         A1 : 1-D time vector for A1
         A2 : 1-D time vector for A2
