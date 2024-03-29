@@ -513,7 +513,7 @@ def plot_cancercells_den_1(init_data, par, t1_den, par_1):
         par_1 (array float): set of parameters obtained after first denervation at time t1_den
     """    
     Q, t, dt, A1, A2, NTc, NT0,xhalf,All_Q = compute_pde(70, par, init_data)
-    td, NT0d, NTcd, all_Q = compute_pde_den(t1_den,dt, 70, par,par_1, init_data)
+    td, NT0d, NTcd, all_Q = compute_pde_den(t1_den, dt, 70, par, par_1, init_data)
     plt.figure()
     plt.plot(t,NTc, color='black', label='control')
     plt.plot(td,NTcd, color='red', label='denervated')
