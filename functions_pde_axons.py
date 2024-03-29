@@ -172,7 +172,90 @@ def compute_pde(tf1, par, init_data):
 
 #--------------------------------------------------------
 # In silico denervation 
+def compute_pde_den(tf1, dt, tf2, par_old, par, init_data):
+    """
+    Numerical computation of the in silico denervation of the dynamical system
 
+    Args:
+        tf1 (int): time at which we do the first denervation for a particular type of axon
+        dt (float): time step
+        tf2 (int): final time
+        par_old (array float): set of parameters used
+        par (array float): set of parameters obtained after first denervation at time tf1
+        init_data (list): initial data for A1 and A2
+
+    Returns:
+        td : a 1-D vector of time discritized
+        NT0d : 1-D time vector for NT0d total concentration of cells 
+        NTcd : 1-D time vector for the total concentration of cancer cells 
+        all_Q : a list of arrays that saves the cell distribution at each time step
+    """
+
+
+
+    # Discretization inputs
+    dx = 0.05 # space step
+    
+    L = 50 # space bounds
+    x = np.arange(-L,L+dx,dx)# vector discretized space
+    N = len(x) - 1 # max size space vector
+    xhalf = (x[0:N] + x[1:N +1])/2# vector middle points
+    
+    k = np.abs(x)
+    xcind = k.argmin()  
+
+
+    # stability conditions
+    cfl = dt /dx
+    # Initialization variables
+
+    Qold, _told, _dtold, A1old, A2old, _NTcold, NT0old , xhalf,All_Q= compute_pde(
+        tf1, 
+        par_old, 
+        init_data
+    )
+    
+    mom = NT0old[0]
+    
+    
+    t = np.arange(_told[-1], tf2 + dt/2, dt)
+    NTnew = len(t)
+    A1 = np.zeros((NTnew,))
+    A2 = np.zeros((NTnew,))
+    Q = np.zeros((N,))
+    # Initialization
+    A2[0] = A2old[-1]  # initial state
+    A1[0] = A1old[-1]
+    Q = Qold
+    # advection and reaction terms
+    transfer = par[0] * pi_transport(x,par)
+    epsilon = par[3] * np.exp(-par[4] * ((x + L) ** 2))
+    prol = 0.5 * (par[5]) * (1 + np.tanh(par[6] * xhalf))
+
+
+
+    _A1, _A2, NT0, NTc, Q , t_Q = loop_pde(
+        dt, 
+        cfl, 
+        NTnew,  
+        transfer, 
+        prol, 
+        epsilon, 
+        par, 
+        A1, 
+        A2, 
+        Q, 
+        mom,
+        dx,
+        N,
+        xcind
+    )
+    td = np.concatenate((_told[:-1],t))
+    NTcd = np.concatenate((_NTcold[:-1],NTc))
+    NT0d = np.concatenate((NT0old[:-1], NT0))
+    all_Q = np.concatenate((All_Q[:-1], t_Q))
+
+    return (td, NT0d, NTcd, all_Q)
 
 def compute_pde_both_den(tf1,dt, tf2, tf3, par_old,par,par2, init_data):
     """
@@ -419,7 +502,28 @@ def axon_plot(init_data, par):
     plt.show()
     return()
 
+def plot_cancercells_den_1(init_data, par, t1_den, par_1):
+    """
+    A figure that shows the cancer cells dynamics in time for the control and for the denervated case
 
+    Args:
+        init_data (list): initial data for A1 and A2
+        par (array float): set of parameters used 
+        t1_den (integer): time of denervation
+        par_1 (array float): set of parameters obtained after first denervation at time t1_den
+    """    
+    Q, t, dt, A1, A2, NTc, NT0,xhalf,All_Q = compute_pde(70, par, init_data)
+    td, NT0d, NTcd, all_Q = compute_pde_den(t1_den,dt, 70, par,par_1, init_data)
+    plt.figure()
+    plt.plot(t,NTc, color='black', label='control')
+    plt.plot(td,NTcd, color='red', label='denervated')
+    plt.xlabel('t days', fontsize=15)
+    plt.ylabel(r'$NT_c$', fontsize=15)
+    plt.legend()
+    plt.grid() 
+    plt.tight_layout()
+    plt.show()
+    return()
 
 def plot_cancercells_den(init_data, par, t1_den,t2_den, par_1,par_2):
     """
@@ -484,12 +588,17 @@ def denerv_dyn_system(t1,t2,init_data,par):
         par (array float): set of parameters used for plotting
     """  
     if (t1>t2):
-        out = 0
+        par_1 = denerv_param(par,'A2') 
+        par_2 = denerv_param(par,'A1A2') 
+        plot_cancercells_den(init_data, par, t2 , t1 , par_1, par_2) 
 
     if (t1<t2):
-        out = 0
+        par_1 = denerv_param(par,'A1') 
+        par_2 = denerv_param(par,'A1A2') 
+        plot_cancercells_den(init_data, par, t1 , t2 , par_1, par_2)
 
     if (t1==t2):
-        out=0
+        par_d = denerv_param(par,'A1A2')
+        plot_cancercells_den_1(init_data, par, t1, par_d)
     return()
 
