@@ -473,3 +473,23 @@ def plot_pdes(init_data, par):
     plt.show()   
     return()
 
+def denerv_dyn_system(t1,t2,init_data,par):
+    """
+    In silico denervation at defined time points
+
+    Args:
+        t1 (float): time of denervation of A1
+        t2 (float): time of denervation of A2
+        init_data (list): initial data for A1 and A2
+        par (array float): set of parameters used for plotting
+    """  
+    if (t1>t2):
+        out = 0
+
+    if (t1<t2):
+        out = 0
+
+    if (t1==t2):
+        out=0
+    return()
+
