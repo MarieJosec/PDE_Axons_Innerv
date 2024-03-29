@@ -2,7 +2,7 @@
 # Marie Jose Chaaya (2024) marie-jose.chaaya@univ-amu.fr
 # Mathieu Mezache (2024)
 import matplotlib.pyplot as plt
-import functions_pde_axons_ as fct
+import functions_pde_axons as fct
 
 
 def parameters_used():
