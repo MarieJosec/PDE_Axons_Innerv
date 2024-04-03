@@ -23,7 +23,7 @@ The main features of the library are:
 *  the numerical computation of in silico denervation on the system,
 * the visualization of the evolution of the solution.
 
-More details about the dynamical system can be found in [CCHMMP](https://hal.archives-ouvertes.fr/hal-02263522).
+More details about the dynamical system can be found in [CCHMMP](https://hal.inrae.fr/hal-04527648).
 
 ### File functions_pde_axons.py
 
@@ -50,5 +50,5 @@ $ python example_pde_axons.py
 ## Documentation links
 
 * [numba](https://numba.pydata.org/) - Python library to accelerate the runtime (Python)
-* [CCHMMP](https://hal.archives-ouvertes.fr/hal-02263522) - A continuous approach of modeling tumorigenesis and
+* [CCHMMP](https://hal.inrae.fr/hal-04527648) - A continuous approach of modeling tumorigenesis and
 axons regulation for the pancreatic cancer (Preprint)
