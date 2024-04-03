@@ -23,7 +23,7 @@ The main features of the library are:
 *  the numerical computation of in silico denervation on the system,
 * the visualization of the evolution of the solution.
 
-More details about the dynamical system can be found in [CCHMMP](https://hal.inrae.fr/hal-04527648](https://hal.inrae.fr/hal-04527648)).
+More details about the dynamical system can be found in [CCHMMP](https://hal.inrae.fr/hal-04527648).
 
 ### File functions_pde_axons.py
 
@@ -35,7 +35,7 @@ Library of functions in order to compute the examples. The functions are organiz
 
 ### File example_pde_axons.py
 
-The file "example_pde_axons.py" is a python program which computes the dynamical system, computes the system in silico denervated at defined times and plots the results: control solution and denervated solution and the axons (see [CCHMMP](https://hal.archives-ouvertes.fr/hal-02263522](https://hal.inrae.fr/hal-04527648)) for more details).
+The file "example_pde_axons.py" is a python program which computes the dynamical system, computes the system in silico denervated at defined times and plots the results: control solution and denervated solution and the axons (see [CCHMMP](https://hal.inrae.fr/hal-04527648) for more details).
 Three sets of parameters are given, one can choose between these sets and modify the times of denervation. The program returns three figures :
 * the evolution of the axons,
 * the evolution of the total density of cancer cells,
